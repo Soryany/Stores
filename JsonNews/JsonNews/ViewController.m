@@ -44,7 +44,7 @@
    // NSArray *temperationArray =[NSJSONSerialization JSONObjectWithData:data options:nil error:nil];
     NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:data options:nil error:nil];
     //news = [NSJSONSerialization JSONObjectWithData:data options:nil error:nil];
-    news=[jsonObject objectForKey:@"stores"];
+    storesInfo=[jsonObject objectForKey:@"stores"];
     [mainTableView reloadData];
 }
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
@@ -60,7 +60,7 @@
 
 - (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [news count];
+    return [storesInfo count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -73,11 +73,11 @@
     NSString *tem = @"";
     NSString *title = @"";
     NSString *address=@"";
-    for (NSDictionary *data in news)
+    for (NSDictionary *data in storesInfo)
     {
-        tem=[[news objectAtIndex:indexPath.row] objectForKey:@"storeLogoURL"];
-        title=[[news objectAtIndex:indexPath.row] objectForKey:@"phone"];
-        address=[[news objectAtIndex:indexPath.row] objectForKey:@"address"];
+        tem=[[storesInfo objectAtIndex:indexPath.row] objectForKey:@"storeLogoURL"];
+        title=[[storesInfo objectAtIndex:indexPath.row] objectForKey:@"phone"];
+        address=[[storesInfo objectAtIndex:indexPath.row] objectForKey:@"address"];
     }
     //cell.textLabel.text =title;
     
@@ -127,8 +127,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     detailViewController *dViewController = [[detailViewController alloc]initWithNibName:@"detailViewController" bundle:nil];
-    dViewController.title = [[news objectAtIndex:indexPath.row] objectForKey:@"name"];
-    dViewController.newsArticle = [news objectAtIndex:indexPath.row];
+    dViewController.title = [[storesInfo objectAtIndex:indexPath.row] objectForKey:@"name"];
+    dViewController.newsArticle = [storesInfo objectAtIndex:indexPath.row];
     //NSLog([news objectAtIndex:indexPath.row]);
     [self.navigationController pushViewController:dViewController animated:YES];
 }

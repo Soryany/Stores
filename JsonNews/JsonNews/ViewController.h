@@ -10,7 +10,7 @@
 
 @interface ViewController : UIViewController{
     IBOutlet UITableView *mainTableView;
-    NSArray *news;
+    NSArray *storesInfo;
     NSMutableData *data;
 }
 @end
